@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%5p] [%d{yyyy-MM-dd HH:mm:ss SSS}] [%t] (%F:%L) %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/export/home/tomcat/logs/newapp.jd.com/newapp.log"/> <!-- 日志路径，根据实际情况修改 -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%5p] [%d{yyyy-MM-dd HH:mm:ss SSS}] [%t] (%F:%L) %m%n"/>
+        </layout>
+    </appender>
+
+    <category name="com.jd" additivity="false">  <!-- 自定义的日志分类，请根据实际情况调整 -->
+        <priority value="DEBUG"/>      <!-- 根据实际情况修改日志级别，一般线上是INFO以上 -->
+        <appender-ref ref="CONSOLE"/> <!-- 该appender需要在上线时删除，以免输出重复的日志到catalina.out文件 -->
+<!--         <appender-ref ref="FILE"/> -->
+    </category>
+    
+     <category name="com.jd.wxz.service" additivity="false">  <!-- 自定义的日志分类，请根据实际情况调整 -->
+        <priority value="DEBUG"/>      <!-- 根据实际情况修改日志级别，一般线上是INFO以上 -->
+        <appender-ref ref="CONSOLE"/> <!-- 该appender需要在上线时删除，以免输出重复的日志到catalina.out文件 -->
+<!--         <appender-ref ref="FILE"/> -->
+    </category>
+
+    <category name="com.jd.wxz.common" additivity="false">  <!-- 自定义的日志分类，请根据实际情况调整 -->
+        <priority value="ERROR"/>      <!-- 根据实际情况修改日志级别，一般线上是INFO以上 -->
+        <appender-ref ref="CONSOLE"/> <!-- 该appender需要在上线时删除，以免输出重复的日志到catalina.out文件 -->
+<!--         <appender-ref ref="FILE"/> -->
+    </category>
+
+<!-- sql日志开关 -->
+    <category name="com.jd.wxz" additivity="false">  <!-- 自定义的日志分类，请根据实际情况调整 -->
+        <priority value="DEBUG"/>      <!-- 根据实际情况修改日志级别，一般线上是INFO以上 -->
+        <appender-ref ref="CONSOLE"/> <!-- 该appender需要在上线时删除，以免输出重复的日志到catalina.out文件 -->
+<!--         <appender-ref ref="FILE"/> -->
+    </category>
+
+    <root>
+        <priority value="ERROR"/>      <!-- 根据实际情况修改日志级别，一般线上是INFO以上 -->
+        <appender-ref ref="CONSOLE"/> <!-- 该appender需要在上线时删除，以免输出重复的日志到catalina.out文件 -->
+<!--         <appender-ref ref="FILE"/> -->
+    </root>
+</log4j:configuration>
